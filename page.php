@@ -90,7 +90,7 @@ class Page {
                     <?php
                     echo '<a href="'. $home_url .'">';
                     ?>
-                    <img src="img/logo.PNG" width="200" height="120"/>
+                    <img src="img/logo.PNG" alt="logo" width="170" height="90"/>
                     </a>
                         </div>
                         <div id="headerInfo">
@@ -118,7 +118,6 @@ class Page {
     }
     
     private function createFooter() {
-        echo '<div id="footer">';
 //        echo '<div class="hidden" id="url_id">';
 //        echo $_GET['id'];
 //        echo '</div>';
@@ -126,6 +125,7 @@ class Page {
 //        echo $this->level;
 //        echo '</div>';
         ?>
+        <div id="footer">
             <p>© 2016 DobryZnanyLekarz | Realizacja . </p>
         </div>
         </body>
