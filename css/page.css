@@ -65,7 +65,7 @@ body {
     width: 100%;
     height:auto;
     //background-color: white;
-    background: linear-gradient(white 80%, #6d96bd 150%);
+    //background: linear-gradient(white 80%, #6d96bd 150%);
     box-shadow: 7px 7px 25px -5px black;
     //border: 2px solid #6d96bd;
     border-radius: 10px 10px;

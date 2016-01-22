@@ -1,0 +1,45 @@
+#docListWrapper {
+    width: 85%;
+    height: auto;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.docList {
+    margin:0 auto;
+    padding:0px;
+    width:100%;
+}
+
+.docList tr:hover td{
+    background-color: whitesmoke;
+}
+
+.docList tr.full{
+	background-color: #ccecf8;
+}
+.docList tr.part{
+	background-color: #ecf8fc;
+}
+
+.docList td{
+	vertical-align:middle;
+	border-bottom: 1px dashed #c4bebe;
+	text-align:center;
+	padding:10px;
+	font-size:13px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}
+
+.docList form input[type="submit"]{
+
+    background: none;
+    border: none;
+    color: #00A4E0;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}

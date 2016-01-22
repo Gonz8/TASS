@@ -2,6 +2,7 @@
 //include ('user.php');
 //include ('object.php');
 //include ('connector.php');
+include 'doctor.php';
 
 
 /**
