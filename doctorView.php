@@ -7,4 +7,10 @@ class DoctorView extends View {
         echo "DoctorView";
         $this->name = "Lekarz"; 
     }
+    
+    public function contentView() {
+        echo '<div id="contentView">';
+        
+        echo '</div>';
+    }
 }

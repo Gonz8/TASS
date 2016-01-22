@@ -6,10 +6,9 @@
 require('page.php');
 include('simplehtmldom/simple_html_dom.php');
         
-//$page = new Page();
-//$page->show();
-
-//print 'sdd';
+$page = new Page();
+$page->show();
+/*
 $dl_url = 'http://www.dobrylekarz.info';
 $zl_url = 'http://www.znanylekarz.pl';
 //$ch = curl_init($dl_url."/miejsce/gdansk?filter0=53&filter2=**ALL**");
@@ -145,3 +144,5 @@ for($i = $last_page; $i >= 1; $i--) {
 //} 
 //
 //print_r($objs);
+
+*/

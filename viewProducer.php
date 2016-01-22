@@ -13,7 +13,7 @@ class ViewProducer {
             case "list":
                 $result = new ListView();
                 break;
-            case 1:
+            case "doctor":
                 $result = new DoctorView();
                 break;
             default:

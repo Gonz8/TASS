@@ -1,9 +1,10 @@
 <?php
 //include('user.php');
 //include ('object.php');
-include ('view.php');
+include 'viewProducer.php';
 //include ('alert.php');
-//require_once('fw.php');
+require_once('fw_print.php');
+require_once('consts.php');
 
 
 /**
@@ -20,12 +21,17 @@ class Page {
     
     public function __construct() {
         //$this->view = new View($_GET['id']);
-        $this->view = new View();
-        // dodaj viewProducer --> zwracac bedzie konkretny widok dziedziczacy po View
+        if(isset($_GET['id'])){
+            $id=$_GET['id'];
+        } else {
+            $id = "search";
+        }
+        $viewProducer = new ViewProducer();
+        $this->view = $viewProducer->getView($id);
         if($this->view->name){
-            $this->title = $this->view->name . " (TASS)";
+            $this->title = "DobryZnanyLekarz - " . $this->view->name;
         }else {
-            $this->title = "TASS";
+            $this->title = "DobryZnanyLekarz";
         }
     }
 
@@ -45,9 +51,14 @@ class Page {
         $this->showStyle();
 
                 $this->createHead();
-                echo '<div class="content">';
-                $this->createContent();
-                echo '</div>';
+                if(isset($_GET['id'])){
+                    echo '<div class="content">';
+                    $this->createContent();
+                    echo '</div>';
+                } else {
+                    $this->createContent();
+                }
+                
                 $this->createFooter(true);
             
         
@@ -112,9 +123,7 @@ class Page {
         } else {
             $id = NULL;
         }
-        echo '<div id="contentView">';
         $this->view->contentView();  
-        echo '</div>';
     }
     
     private function createFooter() {

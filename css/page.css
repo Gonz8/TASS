@@ -79,6 +79,57 @@ body {
     padding:10px;
 }
 
+.searchView {
+    clear: both;
+    width:540px;
+    height:60px;
+    background-color: #ecf8fc;
+    border: 2px solid #00A4E0;
+    border-radius: 5px 5px;
+    padding: 8px;
+    position:relative;
+    top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#searchForm {
+    margin-top: 20px;
+    width: 510px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchView form {
+    font-family: Verdana;
+    font-size: 0.9em;
+}
+
+.searchView label {
+    padding:3px;
+    width:40px;
+    color:grey;
+}
+
+.searchView input[type="submit"] {
+    background-color:#00A4E0;
+    border-radius:10px;
+    border: 1px solid #efefef;
+    cursor: pointer;
+    font: 13px/18px Calibri, 'Helvetica Neu', Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    padding: 5px 10px 4px;
+    text-align: center;
+    text-decoration: none !important;
+    text-shadow: 0 0px 1px rgba(0,0,0,0.75);
+    text-transform: uppercase;
+    width: auto;
+}
+
+.searchView input[type="submit"]:hover {
+    background-color: #ccc;
+}
+
 #footer {
     clear:both;
     border-top: 3px solid #00A4E0;

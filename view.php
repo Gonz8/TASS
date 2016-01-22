@@ -13,7 +13,7 @@ class View {
     
     public function __construct()
     {
-        //echo "view construct";
+        echo "view construct";
     }
     
     public function contentView() {
