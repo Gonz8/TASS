@@ -17,7 +17,7 @@ class View {
     }
     
     public function contentView() {
-        echo "Content";
+        echo "MainView";
      }
     
 }
