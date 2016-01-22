@@ -5,7 +5,7 @@
 
 
 /**
- * Description of view
+ * Description of View
  *
  */
 class View {
