@@ -28,8 +28,8 @@ class ListView extends View {
     
     private function printList($spec, $city, $page) {
         $doctors = $this->getData($spec, $city, $page);
-        //var_dump($doctors);
         echo '<div id="docListWrapper">';
+        echo $this->zl_getPaginationHTML($spec, $city, $page);
         echo '<table class="docList">';
         foreach ($doctors as $doctor) {
             if($doctor->full_matched)
@@ -73,7 +73,7 @@ class ListView extends View {
         $zl_url = Consts::$zl_url;
         $zl_url .= "/".Consts::$zl_spec[$spec]."/".Consts::$zl_city[$city];
         if($page) {
-            $zl_url .= $page;
+            $zl_url .= "/" . $page;
         }
         $dl_url = Consts::$dl_url;
         $dl_url .= "/miejsce/".Consts::$dl_city[$city]."?filter0=".Consts::$dl_spec[$spec];
@@ -126,42 +126,58 @@ class ListView extends View {
         $search_container = $dom->find('div#search-listing-container',0);
         $list = $search_container->find('ul.search-list',0);
 
-        $last_page = "";
-    //    if($pager) {
-    //        $pager1 = $cm1->find('div.pager',0);
-    //        foreach($pager1->find('a') as $elem)
-    //        $last_page = $elem->href;
-    //        $temp = explode('page=', $last_page);
-    //        $temp2 = explode('&', $temp[1]);
-    //        $last_page = $temp2[0]; 
-    //    }
-
         foreach($list->children() as $elem) {
             $li_content = $elem->find('div.rank-element-left .content',0);
             $name_sec    = $li_content->find('h4.rank-element-name',0);
-            $item['name']    = $name_sec->find('a', 0)->innertext;
-            $item['href'] = $name_sec->find('a', 0)->href;
             $rating = $name_sec->find('meta[itemprop=ratingValue]',0);
             $reviews = $name_sec->find('meta[itemprop=reviewCount]',0);
-            $item['score'] = $rating ? $rating->content : 'brak';
-            $item['comment_count'] = $reviews ? $reviews->content : '0';
-
             $spec_sec = $li_content->find('h4.rank-element-specializations',0);
-            $item['spec'] = $spec_sec->plaintext;
             
-            //do obiektu Doctor już tu??
             $doc_name = $name_sec->find('a', 0)->innertext;
             $doctor = new Doctor($doc_name);
             $doctor->zl_href = $name_sec->find('a', 0)->href;
             $doctor->spec = $spec_sec->plaintext;
             $doctor->zl_comments_cnt = $reviews ? $reviews->content : '0';
             $doctor->zl_score = $rating ? $rating->content : 'brak';
-            //
-                                  
-            //$objs[] = $item;
+            
             $objs[] = $doctor;
         } 
         return $objs;
+    }
+    
+    private function zl_getPaginationHTML($spec, $city, $page) {
+        $url = Consts::$zl_url;
+        $url .= "/".Consts::$zl_spec[$spec]."/".Consts::$zl_city[$city];
+        if($page) {
+            $url .= "/" . $page;
+        }
+        $dom = $this->getDOM($url);
+        $search_container = $dom->find('div#search-listing-container',0);
+        $pagination = $search_container->find('ul.pagination',0);
+        
+        if($pagination) {
+            foreach($pagination->children() as $elem) {
+                $a = $elem->find('a', 0);
+                $link = $a->href;
+                $vars = explode("/", $link);
+                $page = end($vars);
+                if($page != Consts::$zl_city[$city]){
+                    $a->href = "index.php?id=list&spec=".$spec."&city=".$city."&page=".$page;
+                } else {
+                    $a->href = "index.php?id=list&spec=".$spec."&city=".$city;
+                }
+                if($elem->class && $elem->class == 'prev') {
+                    $a->innertext = "Poprzednia";
+                }
+                else if($elem->class && $elem->class == 'next') {
+                    $a->innertext = "Następna";
+                }
+            } 
+            return $pagination->outertext;
+        } else {
+            return "";
+        }
+        
     }
     
     private function dl_getRows($url) {
