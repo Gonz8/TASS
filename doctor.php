@@ -10,6 +10,7 @@ class Doctor {
     public $zl_score;
     public $zl_comments_cnt;
     public $dl_comments_cnt;
+    public $dl_name;
     
     public $full_matched;
     public $part_matched;

@@ -46,6 +46,9 @@ class ListView extends View {
                 <input type='hidden' name ='dl_href' value='<?php echo $doctor->dl_href;?>'>
                 <input type='hidden' name ='spec' value='<?php echo $doctor->spec;?>'>
                 <input type='hidden' name ='zl_score' value='<?php echo $doctor->zl_score;?>'>
+                <input type='hidden' name ='dl_name' value='<?php echo $doctor->dl_name;?>'>
+                <input type='hidden' name ='full' value='<?php echo $doctor->full_matched;?>'>
+                <input type='hidden' name ='part' value='<?php echo $doctor->part_matched;?>'>
                 <input type='submit' name='doctor' value='<?php echo $doctor->name;?>'>
             </form>
             <?php
@@ -101,7 +104,8 @@ class ListView extends View {
                 if (strpos($dl_doc['name'], $surname) !== FALSE) {
                     $zl_doc->part_matched = true;
                     $zl_doc->dl_href = Consts::$dl_url.$dl_doc['href'];
-                    $zl_doc->dl_comments_cnt = $dl_doc['comment_count'];                    
+                    $zl_doc->dl_comments_cnt = $dl_doc['comment_count'];
+                    $zl_doc->dl_name = $dl_doc['name'];
                     if (strpos($dl_doc['name'], $f_name) !== FALSE) {
                         $zl_doc->full_matched = true;
                     }
