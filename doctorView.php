@@ -80,9 +80,13 @@ class DoctorView extends View {
            foreach($this->doctor->dl_comments as $comment) {
                 echo '<div>';
                 echo "<strong>".$comment->title."</strong> <i>(".$comment->date.")</i>";   echo '</br>';
-                if ($comment->rating) {
+                if ($comment->rating && strpos($comment->rating, 'Pozytywny') !== FALSE) {
                     echo '<span style="color:green;">'.$comment->rating."</span>"; echo '</br>';
-                }
+                } else if ($comment->rating && strpos($comment->rating, 'Negatywny') !== FALSE) {
+                    echo '<span style="color:red;">'.$comment->rating."</span>"; echo '</br>';
+                } else {
+                    echo '<span style="color:gray;">'.$comment->rating."</span>"; echo '</br>';
+                }       
                 echo $comment->content;
                 echo '</div>';
             } 
@@ -115,18 +119,21 @@ class DoctorView extends View {
             foreach($comments->children() as $elem) {
                 //$title = $elem->find('h3',0)->plaintext;
                 $details = $elem->find('div.details',0);
-                $left = $details->find('div.pull-left',0);
-                $right = $details->find('div.pull-right',0);
-                $title = $left->find('span.author, a.author',0)->plaintext;
-                $date = $left->find('time',0)->plaintext;
-                $rating = $right->find('span.text-score',0)->plaintext;
+                if($details){
+                    $right = $details->find('div.pull-right',0);
+                    $left = $details->find('div.pull-left',0);
+                    $title = $left->find('span.author, a.author',0)->plaintext;
+                    $date = $left->find('time',0)->plaintext;
+                    $rating = $right->find('span.text-score',0)->plaintext;
+                }   
                 $content = $elem->find('p[itemprop]',0)->plaintext;
                 $c = new Comment(trim($content));
-                if($title)
+                if($title && $details) {
                     $c->title = $title;
-                $c->date = $date;
-                $c->rating = $rating;
-
+                    $c->date = $date;
+                    $c->rating = $rating;
+                }
+                    
                 $objs[] = $c;
             }
             return $objs;

@@ -1,6 +1,7 @@
 <?php
 $prefix = array(
-  'aren\'t',
-  'isn\'t',
-  'not'
+  'nie',
+  'ani'
 );
+$pre = base64_encode(serialize($prefix));
+print_r($pre);

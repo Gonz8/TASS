@@ -205,7 +205,13 @@ class Sentiment {
 
 		//Classification is the key to the scores array
 		$classification = key($scores);
-
+                if($classification == 'pos') {
+                    $classification = "Pozytywny";
+                } else if($classification == 'neg') {
+                    $classification = "Negatywny";
+                } else {
+                    $classification = "Neutralny";
+                }
 		return $classification;
 	}
 
@@ -223,7 +229,7 @@ class Sentiment {
 
 		if (file_exists($fn)) {
 			$temp = file_get_contents($fn);
-			$words = unserialize($temp);
+			$words = unserialize(base64_decode($temp));
 		} else {
 			echo 'File does not exist: ' . $fn;
 		}
@@ -343,7 +349,7 @@ class Sentiment {
 		;
 		if (file_exists($fn)) {
 			$temp = file_get_contents($fn);
-			$words = unserialize($temp);
+			$words = unserialize(base64_decode($temp));
 		} else {
 			return 'File does not exist: ' . $fn;
 		}

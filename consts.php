@@ -10,7 +10,20 @@ class Consts {
         "dermatolog" => "Dermatolog",
         "alergolog" => "Alergolog",
         "stomatolog" => "Stomatolog",
-        "inne" => "ZPECJALIZACJA"
+        "ginekolog" => "Ginekolog",
+        "ortopeda" => "Ortopeda",
+        "chirurg" => "Chirurg",
+        "laryngolog" => "Laryngolog",
+        "pediatra" => "Pediatra",
+        "internista" => "Internista",
+        "psychiatra" => "Psychiatra",
+        "okulista" => "Okulista",
+        "kardiolog" => "Kardiolog",
+        "neurolog" => "Neurolog",
+        "dietetyk" => "Dietetyk",
+        "fizjoterapeuta" => "Fizjoterapeuta",
+        "weterynarz" => "Weterynarz",
+        "Ortodonta" => "Ortodonta",
         );
     
     public static $my_city = array
@@ -18,7 +31,21 @@ class Consts {
         "gdank" => "Gdańsk",
         "warszawa" => "Warszawa",
         "bialystok" => "Białystok",
-        "miasto" => "MIEJSCOWOŚĆ"
+        "sierpc" => "Sierpc",
+        "plock" => "Płock",
+        "krakow" => "Kraków",
+        "szczecin" => "Szczecin",
+        "poznan" => "Poznań",
+        "wroclaw" => "Wrocław",
+        "lodz" => "Łódź",
+        "torun" => "Toruń",
+        "radom" => "Radom",
+        "olsztyn" => "Olsztyn",
+        "bydgoszcz" => "Bydgoszcz",
+        "koszalin" => "Koszalin",
+        "katowice" => "Katowice",
+        "lublin" => "Lublin",
+        "kielce" => "Kielce",
         );
     
     public static $zl_spec = array
@@ -26,7 +53,20 @@ class Consts {
         "dermatolog" => "dermatolog",
         "alergolog" => "alergolog",
         "stomatolog" => "stomatolog",
-        "inne" => "ZPECJALIZACJA"
+        "ginekolog" => "ginekolog",
+        "ortopeda" => "ortopeda",
+        "chirurg" => "chirurg",
+        "laryngolog" => "laryngolog",
+        "pediatra" => "pediatra",
+        "internista" => "internista",
+        "psychiatra" => "psychiatra",
+        "okulista" => "okulista",
+        "kardiolog" => "kardiolog",
+        "neurolog" => "neurolog",
+        "dietetyk" => "dietetyk",
+        "fizjoterapeuta" => "fizjoterapeuta",
+        "weterynarz" => "weterynarz",
+        "Ortodonta" => "ortodonta",
         );
     
     public static $zl_city = array
@@ -34,7 +74,21 @@ class Consts {
         "gdank" => "gdansk",
         "warszawa" => "warszawa",
         "bialystok" => "bialystok",
-        "miasto" => "MIEJSCOWOŚĆ"
+        "sierpc" => "sierpc",
+        "plock" => "plock",
+        "krakow" => "krakow",
+        "szczecin" => "szczecin",
+        "poznan" => "poznan",
+        "wroclaw" => "wroclaw",
+        "lodz" => "lodz",
+        "torun" => "toruń",
+        "radom" => "radom",
+        "olsztyn" => "olsztyn",
+        "bydgoszcz" => "bydgoszcz",
+        "koszalin" => "koszalin",
+        "katowice" => "katowice",
+        "lublin" => "lublin",
+        "kielce" => "Kielce",
         );
     
     public static $dl_spec = array
@@ -42,7 +96,20 @@ class Consts {
         "dermatolog" => "53",
         "alergolog" => "19",
         "stomatolog" => "9",
-        "inne" => "ZPECJALIZACJA"
+        "ginekolog" => "25",
+        "ortopeda" => "11",
+        "chirurg" => "7",
+        "laryngolog" => "27",
+        "pediatra" => "4",
+        "internista" => "513",
+        "psychiatra" => "390",
+        "okulista" => "23",
+        "kardiolog" => "287",
+        "neurolog" => "82",
+        "dietetyk" => "4470",
+        "fizjoterapeuta" => "1023",
+        "weterynarz" => "4718",
+        "Ortodonta" => "241",
         );
     
     public static $dl_city = array
@@ -50,6 +117,20 @@ class Consts {
         "gdank" => "gdansk",
         "warszawa" => "warszawa",
         "bialystok" => "bialystok",
-        "miasto" => "MIEJSCOWOŚĆ"
+        "sierpc" => "sierpc",
+        "plock" => "plock",
+        "krakow" => "krakow",
+        "szczecin" => "szczecin",
+        "poznan" => "poznan",
+        "wroclaw" => "wroclaw",
+        "lodz" => "lodz",
+        "torun" => "toruń",
+        "radom" => "radom",
+        "olsztyn" => "olsztyn",
+        "bydgoszcz" => "bydgoszcz",
+        "koszalin" => "koszalin",
+        "katowice" => "katowice",
+        "lublin" => "lublin",
+        "kielce" => "Kielce",
         ); 
 }
