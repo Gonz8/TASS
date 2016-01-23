@@ -62,7 +62,11 @@ class DoctorView extends View {
            foreach($this->doctor->zl_comments as $comment) {
                 echo '<div>';
                 echo "<strong>".$comment->title."</strong> <i>(".$comment->date.")</i>";   echo '</br>';
-                echo '<span style="color:green;">'.$comment->rating."</span>"; echo '</br>';
+                if ($comment->rating && strpos($comment->rating, 'dobry') !== FALSE) {
+                    echo '<span style="color:green;">'.$comment->rating."</span>"; echo '</br>';
+                } else {
+                    echo '<span style="color:red;">'.$comment->rating."</span>"; echo '</br>';
+                }
                 echo $comment->content;
                 echo '</div>';
            } 
@@ -76,6 +80,9 @@ class DoctorView extends View {
            foreach($this->doctor->dl_comments as $comment) {
                 echo '<div>';
                 echo "<strong>".$comment->title."</strong> <i>(".$comment->date.")</i>";   echo '</br>';
+                if ($comment->rating) {
+                    echo '<span style="color:green;">'.$comment->rating."</span>"; echo '</br>';
+                }
                 echo $comment->content;
                 echo '</div>';
             } 
@@ -161,6 +168,7 @@ class DoctorView extends View {
                     $vars = explode(',', $text);
                     $c->date = $vars[1];
                 }
+                $c->getCommentSentiment();
                 $objs[] = $c;
             } 
             $this->doctor->dl_comments = $objs;

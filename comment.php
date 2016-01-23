@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/Sentiment/autoload.php';
 /**
  * Description of Comment
  */
@@ -18,5 +19,14 @@ class Comment {
     }
     public function __get($name) {
         return $this->$name;
+    }
+    
+    public function getCommentSentiment() {
+        $sentiment = new \PHPInsight\Sentiment();
+        $content = $this->content;
+        $class = $sentiment->categorise($content);
+        $this->rating = $class;
+        echo '<pre>';
+        var_dump($sentiment->score($content));
     }
 }

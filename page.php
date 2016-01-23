@@ -15,12 +15,11 @@ class Page {
     //public $object; //bedzie tabela docRow
     public $view;
     public $title;
-    private $keywords = "TASS";
+    private $keywords = "TASS, Znany Lekarz, Dobry Lekarz, DobryZnanyLekarz";
     private $style = "css/stylesheet.css";
     private $js = "js/page.js";
     
     public function __construct() {
-        //$this->view = new View($_GET['id']);
         if(isset($_GET['id'])){
             $id=$_GET['id'];
         } else {
