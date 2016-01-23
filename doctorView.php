@@ -22,6 +22,7 @@ class DoctorView extends View {
     public function contentView() {
         echo '<div id="contentView">';
         $this->printHeader();
+        $this->printInfo();
         $this->printCommentsSection();
         echo '</div>';
     }
@@ -29,14 +30,34 @@ class DoctorView extends View {
     public function printHeader() {
         echo '<div id="doctor-top">';
         ?><img src="img/person.PNG" alt="doctor" width="80" height="80"/><?php
-        echo "<div><span>".$this->doctor->name."</span></br>".$this->doctor->spec."</div>";
+        echo '<div id="top-matched">';
+        echo '<div id="top-info"><span>'.$this->doctor->name."</span></br>".$this->doctor->spec."</div>";
+        if($this->doctor->full_matched)
+            echo '<span style="color:green">Dopasowany</span>';
+        else if($this->doctor->part_matched)
+            echo '<span style="color:greenyellow">Częściowo dopasowany</span>';
+        echo '</div>';
+        echo '</div>';
+    }
+    
+    private function printInfo() {
+        echo '<div id="addressWrapper">';
+            echo '<div id="zl_address" class="address">';
+            echo '<h4 class="adrHead">Adres (ZnanyLekarz)</h4>';
+            echo $this->zl_getAddress();
+            echo '</div>';
+            echo '<div id="dl_address" class="address">';
+            echo '<h4 class="adrHead">Adres (DobryLekarz)</h4>';
+            echo '<strong>'.$this->doctor->dl_name.'</strong></br>';
+            echo $this->dl_getAddress();
+            echo '</div>';
         echo '</div>';
     }
     
     private function printCommentsSection() {
-//        $lp = $this->zl_getCommentsLastPage(); var_dump($lp);
+        echo '<div id="commentsWrapper">';
         echo '<div id="zl_comments" class="comments">';
-        echo '<h3 class="commHead">Opinie (ZnanyLekarz)</h4>';
+        echo '<h3 class="commHead">Opinie (ZnanyLekarz) <span style="font-size:0.7em; color:#00A4E0">Ogólna ocena: '.$this->doctor->zl_score.'</h3>';
         if ($this->doctor->zl_comments) {
            foreach($this->doctor->zl_comments as $comment) {
                 echo '<div>';
@@ -50,7 +71,7 @@ class DoctorView extends View {
         echo '</div>';
         
         echo '<div id="dl_comments" class="comments">';
-        echo '<h3 class="commHead">Opinie (DobryLekarz)</h4>';
+        echo '<h3 class="commHead">Opinie (DobryLekarz)</h3>';
         if ($this->doctor->dl_comments) {
            foreach($this->doctor->dl_comments as $comment) {
                 echo '<div>';
@@ -61,6 +82,7 @@ class DoctorView extends View {
         } else
             echo "BRAK";
         
+        echo '</div>';
         echo '</div>';
     }
     
@@ -88,7 +110,7 @@ class DoctorView extends View {
                 $details = $elem->find('div.details',0);
                 $left = $details->find('div.pull-left',0);
                 $right = $details->find('div.pull-right',0);
-                $title = $left->find('span.author',0)->plaintext;
+                $title = $left->find('span.author, a.author',0)->plaintext;
                 $date = $left->find('time',0)->plaintext;
                 $rating = $right->find('span.text-score',0)->plaintext;
                 $content = $elem->find('p[itemprop]',0)->plaintext;
@@ -143,5 +165,32 @@ class DoctorView extends View {
             } 
             $this->doctor->dl_comments = $objs;
         }
+    }
+    
+    private function zl_getAddress() {
+        $dom = $this->getDOM($this->doctor->zl_href);
+        $adr = $dom->find('li.address-data-container');
+        $result = "";
+        if ($adr) {
+            foreach($adr as $elem) {
+                $text = $elem->find('p.adrData',0);
+                $result .= $text->plaintext . "</br>oraz</br>";
+            }
+            $result = substr($result,0,-9);
+        }
+        return $result;
+    }
+    private function dl_getAddress() {
+        $dom = $this->getDOM($this->doctor->dl_href);
+        $adr = $dom->find('div.field-field-adres',0);
+        $result = "";
+        if ($adr) {
+            foreach($adr->find('div.field-item p') as $elem) {
+                $text = $elem->plaintext;
+                $result .= $text . "</br>oraz</br>";
+            }
+            $result = substr($result,0,-9);
+        }
+        return $result;
     }
 }

@@ -106,17 +106,51 @@ class Page {
                         </div>
                         <div id="headerInfo">
                             <?php
-                            //print info z wyszukiwania
-                            //printHeaderInfos($this->level,$this->user->object,$this->user->client);
+                                if(isset($_GET['spec']) && isset($_GET['city'])){
+                                    echo Consts::$my_spec[$_GET['spec']].' '.Consts::$my_city[$_GET['city']];
+                                }
                             ?>
                         </div>
+                        <div id="headerSearch">
                             <?php
-                            //ewentualnie div dla wyszukiwarki (form)
+                                if(isset($_GET['id']))
+                                    $this->headerSearch();
                             ?>
+                        </div>
             </div>
 <?php
     }
     
+    private function headerSearch() {
+        ?>
+        <form method='GET' action='<?php $_SERVER['PHP_SELF']?>'>
+               <SELECT name="spec" required>
+               <?php
+                    $spec_arr = Consts::$my_spec;
+                    asort($spec_arr);
+                    printFormSelectOption('', '', 0);
+                    foreach($spec_arr as $key => $val){
+                        printFormSelectOption($key, $val, 0);
+                    }
+               ?>
+               </SELECT>
+               <SELECT name="city" required>
+               <?php
+                    $city_arr = Consts::$my_city;
+                    asort($city_arr);
+                    printFormSelectOption('', '', 0);
+                    foreach($city_arr as $key => $val){
+                        printFormSelectOption($key, $val, 0);
+                    }
+               ?>
+               </SELECT>  
+               <input type='hidden' value='list' name='id'>
+               <input type='submit' value='ok' name='szukaj'>
+               </form>
+            <?php
+    }
+
+
     private function createContent() {
         if(isset($_GET['id'])){
             $id=$_GET['id'];
