@@ -112,17 +112,7 @@ class ListView extends View {
                 }
             }
         }
-    }
-    
-    private function getDOM($url){
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
-        $content = curl_exec($ch);
-        curl_close($ch);
-        $dom = new simple_html_dom();
-        $dom->load($content);
-        return $dom;
+        unset($dl_rows);
     }
     
     private function zl_getRows($url) {
@@ -170,12 +160,12 @@ class ListView extends View {
                 } else {
                     $a->href = "index.php?id=list&spec=".$spec."&city=".$city;
                 }
-                if($elem->class && $elem->class == 'prev') {
-                    $a->innertext = "Poprzednia";
-                }
-                else if($elem->class && $elem->class == 'next') {
-                    $a->innertext = "Następna";
-                }
+//                if($elem->class && $elem->class == 'prev') {
+//                    $a->innertext = "Poprzednia";
+//                }
+//                else if($elem->class && $elem->class == 'next') {
+//                    $a->innertext = "Następna";
+//                }
             } 
             return $pagination->outertext;
         } else {

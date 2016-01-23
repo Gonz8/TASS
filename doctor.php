@@ -15,6 +15,9 @@ class Doctor {
     public $full_matched;
     public $part_matched;
     
+    public $zl_comments;
+    public $dl_comments;
+    
     public function __construct($name) {
         $this->name = $name;
         $this->full_matched = false;
