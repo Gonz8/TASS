@@ -1,7 +1,4 @@
 <?php
-//include ('user.php');
-//include ('object.php');
-//include ('connector.php');
 include 'doctor.php';
 include 'comment.php';
 
@@ -15,7 +12,6 @@ class View {
     
     public function __construct()
     {
-        echo "view construct";
     }
     
     public function contentView() {

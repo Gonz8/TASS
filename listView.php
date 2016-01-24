@@ -4,7 +4,6 @@
  */
 class ListView extends View {
     public function __construct() {
-        //echo "ListView";
         $this->name = "Lista lekarzy"; 
     }
     
@@ -166,12 +165,6 @@ class ListView extends View {
                 } else {
                     $a->href = "index.php?id=list&spec=".$spec."&city=".$city;
                 }
-//                if($elem->class && $elem->class == 'prev') {
-//                    $a->innertext = "Poprzednia";
-//                }
-//                else if($elem->class && $elem->class == 'next') {
-//                    $a->innertext = "Następna";
-//                }
             } 
             return $pagination->outertext;
         } else {

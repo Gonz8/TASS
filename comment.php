@@ -26,7 +26,5 @@ class Comment {
         $content = $this->content;
         $class = $sentiment->categorise($content);
         $this->rating = $class;
-        //echo '<pre>';
-        //var_dump($sentiment->score($content));
     }
 }

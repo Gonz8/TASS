@@ -3,7 +3,7 @@
  * Description of DoctorView
  */
 class DoctorView extends View {
-    public $doctor;//tak samo w listView zrób dla spec city page
+    public $doctor;
     public function __construct() {
         $this->name = "Lekarz";
         
@@ -120,7 +120,6 @@ class DoctorView extends View {
         $comments = $comments_sec->find('ul.list-unstyled',1);
         if ($comments) {
             foreach($comments->children() as $elem) {
-                //$title = $elem->find('h3',0)->plaintext;
                 $details = $elem->find('div.details',0);
                 if($details){
                     $right = $details->find('div.pull-right',0);

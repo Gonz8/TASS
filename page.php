@@ -1,8 +1,5 @@
 <?php
-//include('user.php');
-//include ('object.php');
 include 'viewProducer.php';
-//include ('alert.php');
 require_once('fw_print.php');
 require_once('consts.php');
 
@@ -12,7 +9,6 @@ require_once('consts.php');
  *
  */
 class Page {
-    //public $object; //bedzie tabela docRow
     public $view;
     public $title;
     private $keywords = "TASS, Znany Lekarz, Dobry Lekarz, DobryZnanyLekarz";
@@ -75,21 +71,9 @@ class Page {
     public function showStyle() {
         
         echo "<link href=\"$this->style\" rel=\"stylesheet\" type=\"text/css\" /> \n ";
-        //echo "<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>";
         echo "<script type='text/javascript' src='". $this->js ."'></script>";
         echo "</head>";     
     }
-    
-//    public function showMenu($tabs) {
-//        echo '<div class="tabs_container">';
-//        echo '<ul>';
-//        foreach ($tabs as $name => $url) {
-//            $this->createBtn($name, $url, $this->isBtnActive($url));
-//        }
-//        echo '</ul>';
-//        echo '</div>';
-//        
-//    }
     
     private function createHead() {
         $home_url = 'index.php';
@@ -160,15 +144,9 @@ class Page {
     }
     
     private function createFooter() {
-//        echo '<div class="hidden" id="url_id">';
-//        echo $_GET['id'];
-//        echo '</div>';
-//        echo '<div class="hidden" id="page_level">';
-//        echo $this->level;
-//        echo '</div>';
         ?>
         <div id="footer">
-            <p>© 2016 DobryZnanyLekarz | Realizacja . </p>
+            <p>© 2016 DobryZnanyLekarz | Realizacja Giżyński&Ohradka. </p>
         </div>
         </body>
         </html> <?php

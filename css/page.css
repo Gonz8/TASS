@@ -1,5 +1,4 @@
 body {
-    //background-color: #E6E6E6;
     background-color: white;
 }
 
@@ -8,26 +7,12 @@ body {
 }
 
 #title {
-    //background-color: #D1D1D1;
-    //background-color: #6d96bd;
     background-color: #00A4E0;
     width: 100%;
     min-width: 900px;
     height: 40px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-}
-
-#alert_msg {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #d84246;
-    border: 1px solid gray;
-    border-radius: 8px;
-    padding: 4px;
-    margin-top: 15px;
-    color: #E6E6E6;
 }
 
 #logo {
