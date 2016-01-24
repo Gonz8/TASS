@@ -68,6 +68,9 @@ class ListView extends View {
             echo '</td>';
             echo '</tr>';
         }
+        if(!$doctors){
+            echo 'Nie znaleziono';
+        }
         echo '</table>';
         echo '</div>';
     }
@@ -84,7 +87,8 @@ class ListView extends View {
         $zl_rows = $this->zl_getRows($zl_url);
 
         $last_page = $this->dl_getLastPage($dl_url);
-
+        
+        $dl_rows = array();
         for($i = $last_page; $i >= 0; $i--) {
             foreach($this->dl_getRows($dl_url."&page=".$i) as $row)
                 $dl_rows[] = $row;
@@ -119,23 +123,25 @@ class ListView extends View {
         $dom = $this->getDOM($url);
         $search_container = $dom->find('div#search-listing-container',0);
         $list = $search_container->find('ul.search-list',0);
+        $objs = array();
+        if($list) {
+            foreach($list->children() as $elem) {
+                $li_content = $elem->find('div.rank-element-left .content',0);
+                $name_sec    = $li_content->find('h4.rank-element-name',0);
+                $rating = $name_sec->find('meta[itemprop=ratingValue]',0);
+                $reviews = $name_sec->find('meta[itemprop=reviewCount]',0);
+                $spec_sec = $li_content->find('h4.rank-element-specializations',0);
 
-        foreach($list->children() as $elem) {
-            $li_content = $elem->find('div.rank-element-left .content',0);
-            $name_sec    = $li_content->find('h4.rank-element-name',0);
-            $rating = $name_sec->find('meta[itemprop=ratingValue]',0);
-            $reviews = $name_sec->find('meta[itemprop=reviewCount]',0);
-            $spec_sec = $li_content->find('h4.rank-element-specializations',0);
-            
-            $doc_name = $name_sec->find('a', 0)->innertext;
-            $doctor = new Doctor($doc_name);
-            $doctor->zl_href = $name_sec->find('a', 0)->href;
-            $doctor->spec = $spec_sec->plaintext;
-            $doctor->zl_comments_cnt = $reviews ? $reviews->content : '0';
-            $doctor->zl_score = $rating ? $rating->content : 'brak';
-            
-            $objs[] = $doctor;
-        } 
+                $doc_name = $name_sec->find('a', 0)->innertext;
+                $doctor = new Doctor($doc_name);
+                $doctor->zl_href = $name_sec->find('a', 0)->href;
+                $doctor->spec = $spec_sec->plaintext;
+                $doctor->zl_comments_cnt = $reviews ? $reviews->content : '0';
+                $doctor->zl_score = $rating ? $rating->content : 'brak';
+
+                $objs[] = $doctor;
+            }
+        }
         return $objs;
     }
     
@@ -178,7 +184,8 @@ class ListView extends View {
         $dom = $this->getDOM($url);
         $cm = $dom->find('div#contentmiddle',0);
         $list = $cm->find('div.view-content',0);
-
+        $objs = array();
+        
         foreach($list->find('tr.odd, tr.even') as $elem) {
             $name_td    = $elem->find('td',0);
             $item['name']    = $name_td->find('a', 0)->innertext;

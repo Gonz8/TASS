@@ -88,7 +88,7 @@ class Consts {
         "koszalin" => "koszalin",
         "katowice" => "katowice",
         "lublin" => "lublin",
-        "kielce" => "Kielce",
+        "kielce" => "kielce",
         );
     
     public static $dl_spec = array
@@ -131,6 +131,6 @@ class Consts {
         "koszalin" => "koszalin",
         "katowice" => "katowice",
         "lublin" => "lublin",
-        "kielce" => "Kielce",
+        "kielce" => "kielce",
         ); 
 }

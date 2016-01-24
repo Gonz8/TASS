@@ -46,11 +46,13 @@ class DoctorView extends View {
             echo '<h4 class="adrHead">Adres (ZnanyLekarz)</h4>';
             echo $this->zl_getAddress();
             echo '</div>';
-            echo '<div id="dl_address" class="address">';
-            echo '<h4 class="adrHead">Adres (DobryLekarz)</h4>';
-            echo '<strong>'.$this->doctor->dl_name.'</strong></br>';
-            echo $this->dl_getAddress();
-            echo '</div>';
+            if($this->doctor->dl_href){
+                echo '<div id="dl_address" class="address">';
+                echo '<h4 class="adrHead">Adres (DobryLekarz)</h4>';
+                echo '<strong>'.$this->doctor->dl_name.'</strong></br>';
+                echo $this->dl_getAddress();
+                echo '</div>';
+            }
         echo '</div>';
     }
     
@@ -74,25 +76,26 @@ class DoctorView extends View {
             echo "BRAK";
         echo '</div>';
         
-        echo '<div id="dl_comments" class="comments">';
-        echo '<h3 class="commHead">Opinie (DobryLekarz)</h3>';
-        if ($this->doctor->dl_comments) {
-           foreach($this->doctor->dl_comments as $comment) {
-                echo '<div>';
-                echo "<strong>".$comment->title."</strong> <i>(".$comment->date.")</i>";   echo '</br>';
-                if ($comment->rating && strpos($comment->rating, 'Pozytywny') !== FALSE) {
-                    echo '<span style="color:green;">'.$comment->rating."</span>"; echo '</br>';
-                } else if ($comment->rating && strpos($comment->rating, 'Negatywny') !== FALSE) {
-                    echo '<span style="color:red;">'.$comment->rating."</span>"; echo '</br>';
-                } else {
-                    echo '<span style="color:gray;">'.$comment->rating."</span>"; echo '</br>';
-                }       
-                echo $comment->content;
-                echo '</div>';
-            } 
-        } else
-            echo "BRAK";
-        
+        if($this->doctor->dl_href){
+            echo '<div id="dl_comments" class="comments">';
+            echo '<h3 class="commHead">Opinie (DobryLekarz)</h3>';
+            if ($this->doctor->dl_comments) {
+               foreach($this->doctor->dl_comments as $comment) {
+                    echo '<div>';
+                    echo "<strong>".$comment->title."</strong> <i>(".$comment->date.")</i>";   echo '</br>';
+                    if ($comment->rating && strpos($comment->rating, 'Pozytywny') !== FALSE) {
+                        echo '<span style="color:green;">'.$comment->rating."</span>"; echo '</br>';
+                    } else if ($comment->rating && strpos($comment->rating, 'Negatywny') !== FALSE) {
+                        echo '<span style="color:red;">'.$comment->rating."</span>"; echo '</br>';
+                    } else {
+                        echo '<span style="color:gray;">'.$comment->rating."</span>"; echo '</br>';
+                    }       
+                    echo $comment->content;
+                    echo '</div>';
+                } 
+            } else
+                echo "BRAK";
+        }
         echo '</div>';
         echo '</div>';
     }
